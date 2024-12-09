@@ -37,14 +37,8 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Set up Bazel
-      run: |
-        sudo apt update && sudo apt install apt-transport-https curl gnupg
-        curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
-        sudo mv bazel-archive-keyring.gpg /usr/share/keyrings/
-        echo "deb [signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/download.bazel.build/debian stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-        sudo apt update && sudo apt install -y bazel
-        sudo apt update && sudo apt full-upgrade
+    - name: Setup Bazel environment
+      uses: bazel-contrib/setup-bazel@0.9.1
 
     - name: Build Envoy
       run: |
