@@ -1,5 +1,6 @@
 name: Docker Image CI - Envoy 1.32
 on:
+  workflow_dispatch:  # Add this line
   push:
     branches: [ "release-1.32" ]
   pull_request:
