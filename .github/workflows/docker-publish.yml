@@ -13,11 +13,7 @@ concurrency:
 
 jobs:
   build-and-publish:
-    runs-on: ubuntu-latest
-    # Explicitly specify arm64 architecture
-    strategy:
-      matrix:
-        platform: [arm64]
+    runs-on: ubuntu-latest-arm64
 
     steps:
     # Checkout the Envoy repository
@@ -29,10 +25,10 @@ jobs:
         # ref: 'main'
 
     # Setup Docker buildx for multi-architecture support
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
-      with:
-        platforms: linux/arm64
+    #- name: Set up Docker Buildx
+    #  uses: docker/setup-buildx-action@v3
+    #  with:
+    #    platforms: linux/arm64
 
     # Optional: Login to Docker registry if you plan to push
     # - name: Login to Docker Hub
